@@ -5,8 +5,12 @@ var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
 EmployeeProvider = function(host, port) {
+  var user = process.env.MONGO_USER,
+      pass = process.env.MONGO_PASS;
   this.db= new Db('node-mongo-employee', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
+  this.db.open(function(){
+    db.authenticate(user, pass, function() {});
+  });
 };
 
 
