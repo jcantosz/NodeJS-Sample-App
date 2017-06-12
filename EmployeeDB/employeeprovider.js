@@ -8,6 +8,7 @@ EmployeeProvider = function(host, port) {
   var user = process.env.MONGO_USER,
       pass = process.env.MONGO_PASS;
   this.db= new Db('node-mongo-employee', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
+  console.log("user: " + user);
   this.db.open(function(){
     // Add a user to the database
    this.db.addUser(user, pass, function(err, result) {
