@@ -6,7 +6,7 @@ var dbname = process.env.MONGO_DB;
 var host = 'localhost';
 var port = '27017';
 
-MongoClient.connect('mongodb://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname, function(err, db){  
+MongoClient.connect('mongodb://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname + "?authMechanism=DEFAULT&authSource=admin", function(err, db){  
   if(err){
     console.log(err);
   }else{
