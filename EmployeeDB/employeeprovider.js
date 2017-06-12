@@ -9,7 +9,7 @@ EmployeeProvider = function(host, port) {
       pass = process.env.MONGO_PASS;
   this.db= new Db('node-mongo-employee', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
   this.db.open(function(){
-    db.authenticate(user, pass, function() {});
+    this.db.authenticate(user, pass, function() {});
   });
 };
 
