@@ -10,13 +10,9 @@ EmployeeProvider = function(host, port) {
   this.db= new Db('node-mongo-employee', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
   console.log("user: " + user);
   this.db.open(function(){
-    // Add a user to the database
-   this.db.addUser(user, pass, function(err, result) {
-
-    this.db.authenticate(user, pass, function(err, result) {
-        assert.equal(true, result);
-    });
-   });
+  });
+  this.db.authenticate(user, pass, function(err, result) {
+  	assert.equal(true, result);
   });
 };
 
