@@ -10,9 +10,10 @@ EmployeeProvider = function(host, port) {
       password = process.env.MONGO_PASS,
       host = process.env.MONGO_HOST || 'localhost',
       port = process.env.MONGO_PORT || '27017',
-      dbname = process.env.MONGO_DB;
-
- MongoClient.connect('mongodb://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname + "?authMechanism=DEFAULT&authSource=admin", function(err, db){  
+      dbname = process.env.MONGO_DB,
+      connectionUrl = 'mongodb://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname + '?authMechanism=DEFAULT&authSource=admin';
+console.log("connectionUrl: " + connectionUrl);
+ MongoClient.connect(connectionUrl, function(err, db){  
   if(err){
     console.log(err);
   }else{
