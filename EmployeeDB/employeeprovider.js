@@ -1,4 +1,5 @@
 var Db = require('mongodb').Db;
+var MongoClient = require('mongodb').MongoClient;
 var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
@@ -6,7 +7,20 @@ var ObjectID = require('mongodb').ObjectID;
 
 EmployeeProvider = function(host, port) {
   var user = process.env.MONGO_USER,
-      pass = process.env.MONGO_PASS;
+      pass = process.env.MONGO_PASS,
+      host = process.env.MONGO_HOST || 'localhost',
+      port = process.env.MONGO_PORT || '27017',
+      dbname = process.env.MONGO_DB;
+
+ MongoClient.connect('mongodb://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname + "?authMechanism=DEFAULT&authSource=admin", function(err, db){  
+  if(err){
+    console.log(err);
+  }else{
+    console.log('Mongo Conn....');
+    this.db = db;
+  }
+});
+/*
   this.db= new Db('node-mongo-employee', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
   console.log("user: " + user);
   this.db.open(function(){
@@ -14,6 +28,7 @@ EmployeeProvider = function(host, port) {
   this.db.authenticate(user, pass, function(err, result) {
   	assert.equal(true, result);
   });
+  */
 };
 
 
