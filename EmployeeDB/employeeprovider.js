@@ -7,7 +7,7 @@ var ObjectID = require('mongodb').ObjectID;
 
 EmployeeProvider = function(host, port) {
   var user = process.env.MONGO_USER,
-      pass = process.env.MONGO_PASS,
+      password = process.env.MONGO_PASS,
       host = process.env.MONGO_HOST || 'localhost',
       port = process.env.MONGO_PORT || '27017',
       dbname = process.env.MONGO_DB;
